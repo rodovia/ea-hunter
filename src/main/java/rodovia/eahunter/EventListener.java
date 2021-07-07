@@ -44,7 +44,6 @@ public class EventListener extends ListenerAdapter {
 		Context ctx = new ContextImpl(event.getJDA(), event.getMessage());
 		
 		Command cmd = EAHunter.commandManager().getCommand(preargs.get(0).substring(1));
-		System.out.println(preargs);
 		if (cmd != null) {
 			cmd.run(ctx, args);
 		}
