@@ -13,6 +13,21 @@ import net.dv8tion.jda.api.requests.RestAction;
 public interface Context {
 	JDA getClient();
 	Message getMessage();
+	CommandManager getCommandManager();
+	
+	default void invoke(String command) {
+		Command cmd = getCommandManager().getCommand(command);
+		if (cmd != null) {
+			cmd.run(this);
+		}
+	};
+	
+	default void invoke(String command, String... args) {		
+		Command cmd = getCommandManager().getCommand(command);
+		if (cmd != null) {
+			cmd.run(this, args);
+		}
+	};
 	
 	default Guild getGuild() {
 		if (!getMessage().isFromGuild())
