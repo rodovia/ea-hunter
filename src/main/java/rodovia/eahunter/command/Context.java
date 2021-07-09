@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.requests.RestAction;
+import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
 // TODO: Fazer o CommandManager
 
@@ -46,24 +46,24 @@ public interface Context {
 	
 	default Member getMember() {
 		if (getGuild() == null)
-			throw new UnsupportedOperationException("Failed attempt of fetching the author as member in a DM context");
+			return null;
 		
 		return getMessage().getMember();
 	};
 	
-	default RestAction<Message> send(CharSequence message) {
+	default MessageAction send(CharSequence message) {
 		return getChannel().sendMessage(message);
 	};
 	
-	default RestAction<Message> send(Message message) {
+	default MessageAction send(Message message) {
 		return getChannel().sendMessage(message);
 	};
 	
-	default RestAction<Message> reply(CharSequence message) {
+	default MessageAction reply(CharSequence message) {
 		return getMessage().reply(message);
 	}
 	
-	default RestAction<Message> reply(Message message) {
+	default MessageAction reply(Message message) {
 		return getMessage().reply(message);
 	};
 	

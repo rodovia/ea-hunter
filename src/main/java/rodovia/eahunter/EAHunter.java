@@ -39,6 +39,6 @@ public class EAHunter {
 		jda = JDABuilder.createLight(System.getProperty("TOKEN"))
 				.setStatus(OnlineStatus.DO_NOT_DISTURB)
 				.addEventListeners(new EventListener())
-				.build();		
+				.build();
 	}
 }
